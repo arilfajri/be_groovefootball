@@ -1,4 +1,4 @@
-import bcrypt from "bcrypt";
+import bcryptjs from "bcryptjs";
 import Admin from "../models/AdminModel.js";
 import jwt from "jsonwebtoken";
 
@@ -19,8 +19,8 @@ export const Register = async (req, res) => {
     return res
       .status(400)
       .json({ msg: "passwword &confirm password tidak cocok!" });
-  const salt = await bcrypt.genSalt();
-  const hashPassword = await bcrypt.hash(password, salt);
+  const salt = await bcryptjs.genSalt();
+  const hashPassword = await bcryptjs.hash(password, salt);
   try {
     await Admin.create({
       name: name,
@@ -40,7 +40,7 @@ export const Login = async (req, res) => {
         email: req.body.email,
       },
     });
-    const match = await bcrypt.compare(req.body.password, admin[0].password);
+    const match = await bcryptjs.compare(req.body.password, admin[0].password);
     if (!match) return res.status(400).json({ msg: "Wrong Password" });
     const adminId = admin[0].id;
     const name = admin[0].name;
