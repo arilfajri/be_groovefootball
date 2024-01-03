@@ -23,5 +23,8 @@ try {
 } catch (error) {
   console.error(error);
 }
+const PORT = process.env.PORT || 5000;
 
-app.listen(5000, () => console.log("Server Up and Running..."));
+app.listen(PORT, () => {
+  console.log("Server is running....");
+});
