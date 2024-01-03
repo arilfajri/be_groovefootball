@@ -19,7 +19,7 @@ app.use(Route);
 
 try {
   await db.authenticate();
-  console.log("Database connected....");
+  console.log("Database connected.....");
 } catch (error) {
   console.error(error);
 }
