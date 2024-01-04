@@ -16,7 +16,9 @@ const __dirname = dirname(__filename);
 
 const app = express();
 
-app.use(cors({ credentials: true, origin: "http://localhost:5173" }));
+app.use(
+  cors({ credentials: true, origin: "https://be-groovefootball.vercel.app/" })
+);
 app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
