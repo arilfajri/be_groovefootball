@@ -27,6 +27,10 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use(
+  cors({ credentials: true, origin: "https://fe-groovefootball.vercel.app" })
+);
+
 app.use(cookieParser());
 app.use(express.json());
 app.use(FileUpload());
