@@ -49,7 +49,7 @@ export const Login = async (req, res) => {
       { adminId, name, email },
       process.env.ACCESS_TOKEN_SECRET,
       {
-        expiresIn: "15m",
+        expiresIn: "20s",
       }
     );
     const refreshToken = jwt.sign(
@@ -69,8 +69,8 @@ export const Login = async (req, res) => {
     );
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
-      secure: true,
       maxAge: 24 * 60 * 60 * 1000,
+      domain: ".vercel.app",
     });
     res.json({ accessToken });
   } catch (error) {
