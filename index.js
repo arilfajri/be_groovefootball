@@ -17,7 +17,11 @@ const __dirname = dirname(__filename);
 const app = express();
 
 app.use(
-  cors({ credentials: true, origin: "https://fe-groovefootball.vercel.app/" })
+  cors({
+    credentials: true,
+    origin: "https://fe-groovefootball.vercel.app/",
+    methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  })
 );
 app.use(cookieParser());
 app.use(express.json());
