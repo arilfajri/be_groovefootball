@@ -5,8 +5,14 @@ import Route from "./routes/Route.js";
 import db from "./config/Database.js";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
+import path from "path";
+import { fileURLToPath } from "url";
+import { dirname } from "path";
 
 dotenv.config();
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 const app = express();
 
@@ -16,6 +22,7 @@ app.use(express.json());
 app.use(FileUpload());
 app.use(express.static("public"));
 app.use(Route);
+app.use("/images", express.static(path.join(__dirname, "public/images")));
 
 try {
   await db.authenticate();
