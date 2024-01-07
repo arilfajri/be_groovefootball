@@ -70,7 +70,8 @@ export const Login = async (req, res) => {
     res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       maxAge: 24 * 60 * 60 * 1000,
-      domain: ".vercel.app",
+      sameSite: "None", // Sesuaikan sesuai kebutuhan
+      secure: process.env.NODE_ENV === "production",
     });
     res.json({ accessToken });
   } catch (error) {
